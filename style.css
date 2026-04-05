@@ -1,5 +1,144 @@
-BODY {
-    h1{
-        font-family: Arial, Helvetica, sans-serif;
-    }
+/* ================= VARIÁVEIS BASEADAS NO JOGO ================= */
+:root {
+    --sky-blue: #00A2E8; 
+    --grass-green: #6BBE45; 
+    --nyan-pink: #FF99CC; 
+    --wood-color: #D2A679; 
+    --stone-color: #8C8C8C; 
+    --bg-color: #E6F7FF;
+    --text-color: #333;
+    --card-bg: #FFFFFF;
+}
+
+body.dark-theme {
+    --sky-blue: #1A1A24; 
+    --grass-green: #2E5A1C; 
+    --nyan-pink: #FF4D94;
+    --bg-color: #0F0F16;
+    --text-color: #E0E0E0;
+    --card-bg: #1F1F2E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-color); transition: 0.5s; }
+
+/* ================= HEADER FIXO ================= */
+.navbar { 
+    display: flex; justify-content: space-between; align-items: center; 
+    padding: 15px 5%; background: var(--card-bg); 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
+    position: sticky; top: 0; z-index: 9999; /* Fica fixo no topo sempre */
+    border-bottom: 4px solid var(--nyan-pink);
+}
+.logo { font-size: 1.8rem; font-weight: 900; color: var(--sky-blue); }
+.logo .highlight { color: var(--grass-green); }
+.nav-links { display: flex; gap: 20px; list-style: none; }
+.nav-links a { text-decoration: none; font-weight: bold; color: var(--text-color); font-size: 1.1rem; transition: 0.3s; }
+.nav-links a:hover { color: var(--nyan-pink); }
+
+/* ================= BOTÕES ================= */
+button { border: none; padding: 10px 20px; font-weight: bold; cursor: pointer; border-radius: 8px; transition: 0.3s transform; }
+button:hover { transform: scale(1.05); }
+.btn-theme { background: var(--text-color); color: var(--bg-color); }
+.btn-action { background: var(--grass-green); color: white; font-size: 1.1rem; }
+
+/* BOTÃO GIGANTE DE JOGAR */
+.btn-giant-play {
+    display: inline-block; background: var(--grass-green); color: white;
+    font-size: 2.5rem; font-weight: 900; padding: 20px 50px; border-radius: 50px;
+    text-decoration: none; margin: 30px 0; border: 5px solid white;
+    box-shadow: 0 10px 0 #2E5A1C, 0 15px 20px rgba(0,0,0,0.3);
+    transition: 0.2s;
+}
+.btn-giant-play:active { transform: translateY(10px); box-shadow: 0 0 0 #2E5A1C; }
+.pulse-anim { animation: pulse 1.5s infinite; }
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* ================= SEÇÕES GERAIS ================= */
+section { padding: 80px 5%; text-align: center; }
+.container { max-width: 1000px; margin: 0 auto; }
+.card { background: var(--card-bg); padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.card-pink { border: 4px solid var(--nyan-pink); }
+.card-blue { border: 4px solid var(--sky-blue); }
+
+/* Área do Jogo no Topo */
+.hero-section { background: var(--sky-blue); color: white; padding: 60px 5%; }
+.hero-section h1 { font-size: 3rem; text-shadow: 2px 2px 0px rgba(0,0,0,0.3); }
+
+/* ================= CAIXA DO JOGO ================= */
+.status-badge { display: inline-block; padding: 10px 20px; border-radius: 20px; background-color: #ff4757; color: white; font-weight: bold; margin-bottom: 20px; }
+.status-badge.liberado { background-color: var(--grass-green); }
+
+.game-wrapper { max-width: 900px; margin: 0 auto; border: 10px solid var(--grass-green); border-radius: 20px; background: #000; position: relative; overflow: hidden; cursor: pointer; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+iframe { width: 100%; height: 500px; border: none; display: block; }
+.borrado iframe { filter: blur(20px); pointer-events: none; }
+.borrado .overlay-blur-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: white; padding: 30px; border-radius: 10px; border: 2px solid var(--nyan-pink); }
+.liberado iframe { filter: blur(0px); pointer-events: auto; transition: filter 0.8s ease; }
+.liberado .overlay-blur-text { display: none; }
+
+/* ================= LOJA DE GIFS ================= */
+.shop-section { background: var(--bg-color); }
+.shop-item { 
+    background: var(--card-bg); 
+    padding: 20px; 
+    border-radius: 15px; 
+    border: 3px solid var(--nyan-pink); 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.shop-item:hover {
+    transform: translateY(-5px);
+    border-color: var(--sky-blue);
+}
+
+.shop-gif { 
+    width: 100%; 
+    height: 180px; 
+    object-fit: cover; 
+    border-radius: 10px; 
+    margin-bottom: 15px; 
+    border: 2px solid var(--sky-blue); 
+    transition: 0.5s opacity; /* Suaviza a troca da imagem */
+}
+
+.shop-item h3 { font-size: 1.2rem; color: var(--text-color); margin-bottom: 5px;}
+
+.price { 
+    color: var(--sky-blue); 
+    font-size: 1.1rem; 
+    font-weight: bold; 
+    margin-bottom: 15px;
+}
+
+.btn-buy { 
+    background-color: var(--nyan-pink); 
+    color: white; 
+    border: none; 
+    padding: 10px 15px; 
+    border-radius: 20px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    transition: 0.2s; 
+    width: 100%; 
+}
+
+.btn-buy:hover { 
+    background-color: #ff66b2; 
+    transform: scale(1.05); 
+}
+
+/* Quando o item já foi comprado */
+.btn-buy.comprado {
+    background-color: var(--grass-green);
+    cursor: default;
+    transform: none;
 }

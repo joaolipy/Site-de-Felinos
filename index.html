@@ -2,10 +2,112 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Site felinos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nyan Cat: Templo Maia</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <h1>Site Felinos</h1>
+<body class="light-theme">
+
+    <header class="navbar">
+        <div class="logo">Nyan<span class="highlight">Play</span></div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#loja">Loja</a></li>
+                <li><a href="#sobre">Sobre o Jogo</a></li>
+                <li><a href="#niveis">Níveis</a></li>
+                <li><a href="#formulario">Formulário</a></li>
+            </ul>
+        </nav>
+        <button id="theme-btn" class="btn-theme">Modo Templo (Escuro)</button>
+    </header>
+
+    <main>
+        <section id="play-area" class="hero-section">
+            <h1 id="game-title">Carregando...</h1>
+            <p id="game-info" class="subtitle">Carregando...</p>
+            
+            <a href="#game-container" class="btn-giant-play pulse-anim">🎮 JOGAR AGORA!</a>
+
+            <div class="game-wrapper" id="game-box">
+                <p id="aviso-idade" class="status-badge">Verificando credenciais...</p>
+                <div id="game-container" class="borrado click-to-play">
+                    <iframe src="jogo/index.html" title="Jogo Nyan Cat"></iframe>
+                    
+                    <div class="overlay-blur-text">
+                        <h3>🔒 Templo Bloqueado</h3>
+                        <p>O Templo Maia possui armadilhas. Acesso apenas para +18.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="loja" class="shop-section">
+            <div class="container">
+                <h2>Galeria Fofa 🐾</h2>
+                <p>Gaste 6 peixinhos azuis para abrir uma caixa e ganhar um GIF muito fofo de gatinho para relaxar!</p>
+                <div class="grid-3-col">
+                    
+                    <div class="shop-item">
+                        <img src="https://via.placeholder.com/300x200/FF99CC/FFFFFF?text=Caixa+Surpresa+1+🎁" id="gif-1" class="shop-gif" alt="Caixa Surpresa">
+                        <h3>Gatinho Misterioso</h3>
+                        <span class="price">🐟 6 Peixinhos</span>
+                        <button id="btn-1" class="btn-buy" onclick="desbloquearGif('btn-1', 'gif-1', 'https://media.tenor.com/8QzQ8k5R_xMAAAAi/cat-cute.gif')">Comprar Vídeo</button>
+                    </div>
+
+                    <div class="shop-item">
+                        <img src="https://via.placeholder.com/300x200/00A2E8/FFFFFF?text=Caixa+Surpresa+2+🎁" id="gif-2" class="shop-gif" alt="Caixa Surpresa">
+                        <h3>Gatinho Sonolento</h3>
+                        <span class="price">🐟 6 Peixinhos</span>
+                        <button id="btn-2" class="btn-buy" onclick="desbloquearGif('btn-2', 'gif-2', 'https://media.tenor.com/GfSX-u7VNM4AAAAi/pusheen-cat.gif')">Comprar Vídeo</button>
+                    </div>
+
+                    <div class="shop-item">
+                        <img src="https://via.placeholder.com/300x200/6BBE45/FFFFFF?text=Caixa+Surpresa+3+🎁" id="gif-3" class="shop-gif" alt="Caixa Surpresa">
+                        <h3>Abraço Felino</h3>
+                        <span class="price">🐟 6 Peixinhos</span>
+                        <button id="btn-3" class="btn-buy" onclick="desbloquearGif('btn-3', 'gif-3', 'https://media.tenor.com/ZhfMMJ5E4bEAAAAi/cat-hug.gif')">Comprar Vídeo</button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="sobre" class="about-section">
+            <div class="container card card-blue">
+                <h2>Sobre o Jogo</h2>
+                <p>Nyan Cat: Em Busca do Templo é um jogo relaxante de plataforma 2D feito para aliviar o estresse diário. Criado especialmente para quem busca mecânicas simples, visual aconchegante e acesso rápido (sem menus enrolados).</p>
+            </div>
+        </section>
+
+        <section id="niveis" class="levels-section">
+            <div class="container">
+                <h2>Níveis Disponíveis</h2>
+                <div class="grid-2-col">
+                    <div class="story-card wood-card">
+                        <h3>🌳 Nível 1: Campo Aberto</h3>
+                        <p>Corra, pule as caixas de madeira e colete os peixes azuis.</p>
+                    </div>
+                    <div class="story-card stone-card">
+                        <h3>🗿 Nível 2: Templo dos Gatos</h3>
+                        <p>Explore cavernas com estátuas de olhos vermelhos e sobreviva ao desabamento.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="formulario" class="interaction-section">
+            <div class="container card card-pink">
+                <h2>Formulário de Jogador</h2>
+                <p>Registre seu perfil para salvar o progresso dos seus peixinhos azuis!</p>
+                <div class="input-group">
+                    <input type="text" id="nome-jogador" placeholder="Seu nome ou apelido...">
+                    <button onclick="enviarNome()" class="btn-action">Salvar</button>
+                </div>
+                <h3 id="mensagem-saudacao" class="greeting-text"></h3>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
