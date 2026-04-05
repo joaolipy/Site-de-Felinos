@@ -1,92 +1,121 @@
-// 1. MANIPULAÇÃO DE DADOS ESTÁTICOS
-const NOME_JOGO = "Nyan Cat: Em Busca do Templo";
-const DESENVOLVEDOR = "IndiePlay";
-const COLETAVEL_PRINCIPAL = "Peixes Azuis";
-const HEROI = "Nyan Cat";
-const ANO_LANCAMENTO = 2026;
-
-// Injetando dados
-document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("game-title").innerText = NOME_JOGO;
-    document.getElementById("game-info").innerText = 
-        `Ajude o ${HEROI} a coletar ${COLETAVEL_PRINCIPAL}!`;
-});
-
-// 7. VERIFICAÇÃO AUTOMATIZADA DE LANÇAMENTO
-const anoAtual = new Date().getFullYear();
-if (anoAtual === ANO_LANCAMENTO) {
-    alert(`🎉 JOGUE AGORA! ${NOME_JOGO} foi lançado oficialmente este ano (${ANO_LANCAMENTO})!`);
-}
-
-// 2. ENTRADA DE DADOS PROMPT & 3. DECISÃO
+// ---------------------------------------------------------
+// REQUISITO 1: Verificação Automatizada de Lançamento
+// ---------------------------------------------------------
 window.onload = function() {
-    // Prompt para confirmar a idade
-    let idade = prompt(`Olá! Para jogar as fases do Templo Maia, precisamos confirmar sua idade:`);
-    
-    let container = document.getElementById("game-container");
-    let aviso = document.getElementById("aviso-idade");
+    const ANO_LANCAMENTO = 2026;
+    let anoAtual = new Date().getFullYear();
 
-    if (idade !== null && parseInt(idade) >= 18) {
-        alert("Acesso Autorizado! Você pode clicar e jogar o jogo imediatamente.");
-        aviso.innerText = "Acesso Livre: Pode dar play!";
-        aviso.classList.add("liberado");
-        
-        // 4. MANIPULAÇÃO VIA DOM (Tira o blur e ativa a caixa de jogo)
-        container.classList.remove("borrado");
-        container.classList.add("liberado");
-    } else {
-        alert("Acesso Negado. O jogo possui restrições de idade e continuará bloqueado.");
-        aviso.innerText = "Bloqueado: Restrito para menores de 18 anos.";
+    if (anoAtual === ANO_LANCAMENTO) {
+        alert("🎉 Seja bem-vindo! O jogo 'Nyan Cat: Em Busca do Templo' foi lançado oficialmente este ano!");
     }
 };
 
-// 5. INTERATIVIDADE COM INPUT DE TEXTO
-function enviarNome() {
-    let nome = document.getElementById("nome-jogador").value;
-    let saudacao = document.getElementById("mensagem-saudacao");
+// ---------------------------------------------------------
+// REQUISITO 2 e 3: Decisão (if/else) e Manipulação de Visibilidade via DOM (Blur)
+// ---------------------------------------------------------
+function verificarIdade() {
+    let idadeDigitada = prompt("Para acessar o Templo Maia, digite sua idade:");
+    let idade = parseInt(idadeDigitada);
+    let caixaJogo = document.getElementById("caixa-jogo");
 
-    if (nome.trim() !== "") {
-        saudacao.innerText = `Pronto, ${nome}! Seus Peixes Azuis serão salvos na sua conta!`;
+    if (idade >= 18) {
+        alert("Acesso Permitido! O jogo foi desbloqueado, divirta-se.");
+        caixaJogo.classList.remove("jogo-bloqueado");
+        caixaJogo.classList.add("jogo-liberado");
     } else {
-        saudacao.innerText = "Por favor, digite seu nome primeiro!";
+        alert("Acesso Negado. O jogo possui restrições de idade para as armadilhas do templo.");
     }
 }
 
-// 6. ALTERNÂNCIA DE TEMA (Light/Dark Mode)
-const btnTema = document.getElementById("theme-btn");
+// ---------------------------------------------------------
+// REQUISITO 4: Interatividade com Input de Texto (Feedback)
+// ---------------------------------------------------------
+function enviarFeedback() {
+    let opiniao = document.getElementById("input-opiniao").value;
+    let mensagemExibicao = document.getElementById("mensagem-feedback");
 
-btnTema.addEventListener("click", function() {
-    document.body.classList.toggle("dark-theme");
-
-    if (document.body.classList.contains("dark-theme")) {
-        btnTema.innerText = "Mudar para Modo Campo (Claro)";
+    if (opiniao.trim() !== "") {
+        mensagemExibicao.innerText = "Miau! 🐾 Recebemos seu feedback: '" + opiniao + "'. Muito obrigado!";
+        document.getElementById("input-opiniao").value = "";
     } else {
-        btnTema.innerText = "Mudar para Modo Templo (Escuro)";
+        mensagemExibicao.innerText = "Por favor, digite alguma coisa antes de enviar.";
+    }
+}
+
+// ---------------------------------------------------------
+// REQUISITO 5: Alternância de Tema (Light/Dark Mode)
+// ---------------------------------------------------------
+const botaoTema = document.getElementById("btn-tema");
+
+botaoTema.addEventListener("click", function() {
+    document.body.classList.toggle("tema-escuro");
+    document.body.classList.toggle("tema-claro");
+
+    if (document.body.classList.contains("tema-escuro")) {
+        botaoTema.innerText = "Modo Claro";
+    } else {
+        botaoTema.innerText = "Modo Escuro";
     }
 });
-// =====================================================================
-// INTERAÇÃO DA LOJA DE GIFS FOfos
-// =====================================================================
+
+// ---------------------------------------------------------
+// EXTRA: Lógica da Loja Fofa (Abrir GIFs)
+// ---------------------------------------------------------
+// =========================================================
+// INTEGRAÇÃO COM O JOGO (Recebendo os Pontos do Construct)
+// =========================================================
+let meusPeixinhos = 0; // Variável que guarda o saldo real
+
+// Fica "escutando" as mensagens que vêm do jogo no iframe
+window.addEventListener("message", function(evento) {
+    // Verifica se a mensagem tem o formato que configuramos no Construct
+    if (evento.data && evento.data.tipo === 'pontos') {
+        meusPeixinhos = evento.data.valor; // Atualiza o saldo
+        document.getElementById("qtd-peixes").innerText = meusPeixinhos; // Atualiza na tela
+    }
+});
+
+// =========================================================
+// LÓGICA DA LOJA FOFA (Comprando e Mostrando a Imagem)
+// =========================================================
 function desbloquearGif(idBotao, idImagem, urlDoGif) {
     let botao = document.getElementById(idBotao);
     let imagem = document.getElementById(idImagem);
 
-    // Se já foi comprado, não faz nada
-    if (botao.classList.contains("comprado")) {
+    // Se a pessoa já comprou, a função para aqui (não faz nada)
+    if (botao.classList.contains("comprado")) { 
         return; 
     }
 
-    // Alerta fofo
-    alert("Miau! 🐾 6 peixinhos azuis foram gastos. Aproveite o seu novo vídeo fofo!");
+    // VERIFICA O SALDO: Custa 6 peixinhos
+    let preco = 6;
 
-    // Troca a imagem da caixa surpresa pelo GIF fofo
-    imagem.style.opacity = 0; // Efeito de piscar
-    setTimeout(() => {
-        imagem.src = urlDoGif;
-        imagem.style.opacity = 1;
-    }, 200);
+    if (meusPeixinhos >= preco) {
+        // Se tem peixes suficientes, debita do saldo!
+        meusPeixinhos = meusPeixinhos - preco;
+        document.getElementById("qtd-peixes").innerText = meusPeixinhos;
 
-    // Muda o botão para mostrar que já é dela
-    botao.innerText = "Desbloqueado! 💖";
-    botao.classList.add("comprado");
+        alert("🐾 Compra realizada! Você abriu uma caixa surpresa!");
+
+        // COMO A IMAGEM APARECE:
+        // 1. Deixamos a caixa surpresa invisível (opacity 0)
+        imagem.style.opacity = 0; 
+        
+        // 2. Esperamos um pouquinho (300 milissegundos) e trocamos o link da imagem para o GIF fofo
+        setTimeout(() => {
+            imagem.src = urlDoGif;
+            // 3. Fazemos o GIF fofo aparecer suavemente (opacity 1) e dar um pulinho (scale)
+            imagem.style.opacity = 1;
+            imagem.style.transform = "scale(1.05)";
+        }, 300);
+
+        // Atualiza o botão para mostrar que já é dela
+        botao.innerText = "Desbloqueado! 💖";
+        botao.classList.add("comprado");
+
+    } else {
+        // Se NÃO tem peixes suficientes
+        let faltam = preco - meusPeixinhos;
+        alert("Miau! Faltam " + faltam + " peixinhos. Jogue mais para conseguir!");
+    }
 }
