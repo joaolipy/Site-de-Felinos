@@ -75,3 +75,75 @@ input[type="text"] { padding: 15px; width: 60%; max-width: 450px; border: 2px so
     object-fit: cover;
     display: block;
 }
+/* ================= INDICADOR DE SCROLL ================= */
+.indicador-scroll {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+/* ================= RESPONSIVIDADE (MOBILE FIRST) ================= */
+
+/* Ajustes para telas menores (como iPhone 14 Pro Max) */
+@media (max-width: 768px) {
+    .menu-fixo {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    nav {
+        margin: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 5px;
+    }
+
+    nav a {
+        margin: 5px;
+        font-size: 0.9rem;
+    }
+
+    section {
+        padding: 60px 20px;
+    }
+
+    section h2 {
+        font-size: 1.8rem;
+    }
+
+    .grid-itens, .grid-polaroid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cartao, .polaroid {
+        width: 100%;
+        max-width: 350px; /* Ajuste para caber bem no iPhone */
+    }
+
+    #caixa-jogo {
+        height: 250px; /* Menor em telas pequenas */
+    }
+
+    input[type="text"] {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .btn-comum {
+        width: 100%;
+    }
+
+    .indicador-scroll{
+        white-space: nowrap;
+    }
+}
+
+/* Ajuste específico para o iPhone 14 Pro Max (largura de 430px) */
+@media (max-width: 430px) {
+    .btn-gigante {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+    }
+}
