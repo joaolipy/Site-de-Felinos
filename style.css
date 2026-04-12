@@ -17,18 +17,13 @@ body.tema-escuro {
     --cor-cartao: #1E1E1E;
 }
 
-/* ================= RESET E GERAL ================= */
+/* ================= GERAL ================= */
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; }
-body { background-color: var(--cor-fundo); color: var(--cor-texto); transition: 0.3s; }
+body { background-color: var(--cor-fundo); color: var(--cor-texto); transition: background-color 0.3s, color 0.3s; }
 html { scroll-behavior: smooth; }
 
 /* ================= CABEÇALHO ================= */
-.menu-fixo {
-    position: sticky; top: 0; z-index: 100;
-    background-color: var(--cor-cartao);
-    display: flex; justify-content: space-between; align-items: center;
-    padding: 15px 5%; box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
+.menu-fixo { position: sticky; top: 0; z-index: 100; background-color: var(--cor-cartao); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 .logo { color: var(--cor-primaria); font-size: 1.8rem; }
 .logo span { color: var(--cor-destaque); }
 nav a { text-decoration: none; color: var(--cor-texto); font-weight: bold; margin: 0 15px; transition: 0.2s; }
@@ -38,33 +33,45 @@ nav a:hover { color: var(--cor-destaque); }
 button { border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s; }
 button:hover { transform: scale(1.05); }
 #btn-tema { background-color: var(--cor-texto); color: var(--cor-fundo); }
-.btn-comum { background-color: var(--cor-primaria); color: white; font-size: 1rem; }
+.btn-comum { background-color: var(--cor-primaria); color: white; font-size: 1rem; padding: 15px 30px; }
 .btn-gigante { background-color: var(--cor-secundaria); color: white; font-size: 1.5rem; padding: 15px 40px; margin: 20px 0; box-shadow: 0 5px 0 #3e7327; }
-.btn-comprar { background-color: var(--cor-destaque); color: white; width: 100%; margin-top: 10px; }
-.btn-comprar.comprado { background-color: var(--cor-secundaria); cursor: default; transform: none; }
 
-/* ================= ESTRUTURA DAS SEÇÕES ================= */
+/* ================= SEÇÕES E ESTRUTURA ================= */
 section { padding: 80px 5%; text-align: center; }
-.secao-loja, .secao-fases { background-color: rgba(0,0,0,0.03); }
+.secao-fases, .secao-mural { background-color: rgba(0,0,0,0.03); }
 section h2 { font-size: 2.2rem; color: var(--cor-primaria); margin-bottom: 15px; }
 section p { font-size: 1.1rem; max-width: 800px; margin: 0 auto 20px auto; line-height: 1.6; }
 
-/* ================= GRIDS E CARTÕES ================= */
+/* ================= GRIDS DE FASES ================= */
 .grid-itens { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
-.cartao { background-color: var(--cor-cartao); padding: 20px; border-radius: 15px; border: 3px solid var(--cor-primaria); width: 320px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-.cartao img { width: 100%; height: 180px; object-fit: cover; border-radius: 10px; margin-bottom: 15px; transition: 0.5s opacity; }
-.cartao h3 { color: var(--cor-texto); margin-bottom: 10px; }
+.cartao { background-color: var(--cor-cartao); padding: 30px; border-radius: 15px; border: 3px solid var(--cor-primaria); width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.cartao h3 { color: var(--cor-destaque); margin-bottom: 15px; font-size: 1.4rem;}
 
-/* ================= JOGO E BLUR ================= */
+/* ================= JOGO ================= */
 #caixa-jogo { width: 100%; max-width: 900px; height: 500px; margin: 0 auto; position: relative; background: #000; border: 5px solid var(--cor-secundaria); border-radius: 15px; overflow: hidden; }
 #caixa-jogo iframe { width: 100%; height: 100%; border: none; display: block; }
-
 .jogo-bloqueado iframe { filter: blur(20px); pointer-events: none; }
 .jogo-bloqueado .aviso-bloqueio { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(0,0,0,0.8); color: white; padding: 30px; border-radius: 10px; border: 2px solid var(--cor-destaque); }
-
 .jogo-liberado iframe { filter: blur(0); pointer-events: auto; transition: filter 0.8s ease; }
 .jogo-liberado .aviso-bloqueio { display: none; }
+
+/* ================= MURAL DE POLAROIDS (JS) ================= */
+.btn-revelar { background-color: var(--cor-destaque); margin-bottom: 30px; }
+.grid-polaroid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
+.polaroid { background-color: #FFFFFF; padding: 15px 15px 25px 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 260px; text-align: center; transition: transform 0.3s ease; animation: surgir 0.5s ease-out; }
+.polaroid:hover { transform: scale(1.05) rotate(0deg) !important; z-index: 10; }
+.polaroid img { width: 100%; height: 200px; object-fit: cover; background: #eee; border: 1px solid #ddd; }
+.polaroid p { color: #333; margin-top: 15px; font-size: 1rem; font-style: italic; font-weight: bold; }
+@keyframes surgir { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
 /* ================= FORMULÁRIO ================= */
 input[type="text"] { padding: 15px; width: 60%; max-width: 450px; border: 2px solid var(--cor-primaria); border-radius: 8px; font-size: 1.1rem; margin-right: 10px; outline: none;}
 .texto-destaque { color: var(--cor-destaque); margin-top: 20px; min-height: 30px; }
+
+/* Garante que a imagem de capa preencha o espaço sem distorcer */
+#caixa-jogo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
