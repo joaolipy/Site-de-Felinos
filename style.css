@@ -1,4 +1,3 @@
-/* ================= VARIÁVEIS DE CORES ================= */
 :root {
     --cor-fundo: #E6F7FF; 
     --cor-texto: #333333;
@@ -17,37 +16,37 @@ body.tema-escuro {
     --cor-cartao: #1E1E1E;
 }
 
-/* ================= GERAL ================= */
+
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Verdana, sans-serif; }
 body { background-color: var(--cor-fundo); color: var(--cor-texto); transition: background-color 0.3s, color 0.3s; }
 html { scroll-behavior: smooth; }
 
-/* ================= CABEÇALHO ================= */
+
 .menu-fixo { position: sticky; top: 0; z-index: 100; background-color: var(--cor-cartao); display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
 .logo { color: var(--cor-primaria); font-size: 1.8rem; }
 .logo span { color: var(--cor-destaque); }
 nav a { text-decoration: none; color: var(--cor-texto); font-weight: bold; margin: 0 15px; transition: 0.2s; }
 nav a:hover { color: var(--cor-destaque); }
 
-/* ================= BOTÕES ================= */
+
 button { border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold; transition: 0.2s; }
 button:hover { transform: scale(1.05); }
 #btn-tema { background-color: var(--cor-texto); color: var(--cor-fundo); }
 .btn-comum { background-color: var(--cor-primaria); color: white; font-size: 1rem; padding: 15px 30px; }
 .btn-gigante { background-color: var(--cor-secundaria); color: white; font-size: 1.5rem; padding: 15px 40px; margin: 20px 0; box-shadow: 0 5px 0 #3e7327; }
 
-/* ================= SEÇÕES E ESTRUTURA ================= */
+
 section { padding: 80px 5%; text-align: center; }
 .secao-fases, .secao-mural { background-color: rgba(0,0,0,0.03); }
 section h2 { font-size: 2.2rem; color: var(--cor-primaria); margin-bottom: 15px; }
 section p { font-size: 1.1rem; max-width: 800px; margin: 0 auto 20px auto; line-height: 1.6; }
 
-/* ================= GRIDS DE FASES ================= */
+
 .grid-itens { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; margin-top: 30px; }
 .cartao { background-color: var(--cor-cartao); padding: 30px; border-radius: 15px; border: 3px solid var(--cor-primaria); width: 400px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 .cartao h3 { color: var(--cor-destaque); margin-bottom: 15px; font-size: 1.4rem;}
 
-/* ================= JOGO ================= */
+
 #caixa-jogo { width: 100%; max-width: 900px; height: 500px; margin: 0 auto; position: relative; background: #000; border: 5px solid var(--cor-secundaria); border-radius: 15px; overflow: hidden; }
 #caixa-jogo iframe { width: 100%; height: 100%; border: none; display: block; }
 .jogo-bloqueado iframe { filter: blur(20px); pointer-events: none; }
@@ -55,7 +54,7 @@ section p { font-size: 1.1rem; max-width: 800px; margin: 0 auto 20px auto; line-
 .jogo-liberado iframe { filter: blur(0); pointer-events: auto; transition: filter 0.8s ease; }
 .jogo-liberado .aviso-bloqueio { display: none; }
 
-/* ================= MURAL DE POLAROIDS (JS) ================= */
+
 .btn-revelar { background-color: var(--cor-destaque); margin-bottom: 30px; }
 .grid-polaroid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; }
 .polaroid { background-color: #FFFFFF; padding: 15px 15px 25px 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); width: 260px; text-align: center; transition: transform 0.3s ease; animation: surgir 0.5s ease-out; }
@@ -64,27 +63,25 @@ section p { font-size: 1.1rem; max-width: 800px; margin: 0 auto 20px auto; line-
 .polaroid p { color: #333; margin-top: 15px; font-size: 1rem; font-style: italic; font-weight: bold; }
 @keyframes surgir { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ================= FORMULÁRIO ================= */
+
 input[type="text"] { padding: 15px; width: 60%; max-width: 450px; border: 2px solid var(--cor-primaria); border-radius: 8px; font-size: 1.1rem; margin-right: 10px; outline: none;}
 .texto-destaque { color: var(--cor-destaque); margin-top: 20px; min-height: 30px; }
 
-/* Garante que a imagem de capa preencha o espaço sem distorcer */
+
 #caixa-jogo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
 }
-/* ================= INDICADOR DE SCROLL ================= */
+
 .indicador-scroll {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
 }
-/* ================= RESPONSIVIDADE (MOBILE FIRST) ================= */
 
-/* Ajustes para telas menores (como iPhone 14 Pro Max) */
 @media (max-width: 768px) {
     .menu-fixo {
         flex-direction: column;
@@ -119,11 +116,11 @@ input[type="text"] { padding: 15px; width: 60%; max-width: 450px; border: 2px so
 
     .cartao, .polaroid {
         width: 100%;
-        max-width: 350px; /* Ajuste para caber bem no iPhone */
+        max-width: 350px;
     }
 
     #caixa-jogo {
-        height: 250px; /* Menor em telas pequenas */
+        height: 250px;
     }
 
     input[type="text"] {
@@ -140,7 +137,6 @@ input[type="text"] { padding: 15px; width: 60%; max-width: 450px; border: 2px so
     }
 }
 
-/* Ajuste específico para o iPhone 14 Pro Max (largura de 430px) */
 @media (max-width: 430px) {
     .btn-gigante {
         font-size: 1.2rem;

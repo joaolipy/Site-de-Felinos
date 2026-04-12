@@ -1,6 +1,3 @@
-// ---------------------------------------------------------
-// REQUISITO 1: Verificação Automatizada (MANTIDO)
-// ---------------------------------------------------------
 window.onload = function() {
     const ANO_LANCAMENTO = 2026;
     let anoAtual = new Date().getFullYear();
@@ -9,9 +6,7 @@ window.onload = function() {
     }
 };
 
-// ---------------------------------------------------------
-// REQUISITO 2 e 3: Idade e Redirecionamento (NOVO)
-// ---------------------------------------------------------
+
 function verificarIdade() {
     let idadeDigitada = prompt("Para acessar o jogo NyanPlay, digite sua idade:");
     let idade = parseInt(idadeDigitada);
@@ -20,11 +15,9 @@ function verificarIdade() {
     if (idade >= 18) {
         alert("Acesso Permitido! O jogo abrirá em uma nova aba para você jogar melhor.");
         
-        // Remove o blur (cumpre a rubrica de manipular o DOM)
         caixaJogo.classList.remove("jogo-bloqueado");
         caixaJogo.classList.add("jogo-liberado");
 
-        // Abre o jogo em uma nova aba para as setas não mexerem o site principal
         window.open('jogo/index.html', '_blank');
         
     } else {
@@ -32,9 +25,7 @@ function verificarIdade() {
     }
 }
 
-// ---------------------------------------------------------
-// REQUISITO 4: Feedback (MANTIDO)
-// ---------------------------------------------------------
+
 function enviarFeedback() {
     let opiniao = document.getElementById("input-opiniao").value;
     let mensagemExibicao = document.getElementById("mensagem-feedback");
@@ -47,9 +38,7 @@ function enviarFeedback() {
     }
 }
 
-// ---------------------------------------------------------
-// REQUISITO 5: Tema (MANTIDO)
-// ---------------------------------------------------------
+
 const botaoTema = document.getElementById("btn-tema");
 botaoTema.addEventListener("click", function() {
     document.body.classList.toggle("tema-escuro");
@@ -57,9 +46,7 @@ botaoTema.addEventListener("click", function() {
     botaoTema.innerText = document.body.classList.contains("tema-escuro") ? "Modo Claro" : "Modo Escuro";
 });
 
-// ---------------------------------------------------------
-// LÓGICA DO MURAL (Com imagens locais e ID corrigido)
-// ---------------------------------------------------------
+
 const bancoDeBoasEnergias = [
     { imagem: "gatinho1.jpg", frase: "Você sobreviveu a mais um dia. Bom trabalho! 💖" },
     { imagem: "gatinho2.jpg", frase: "Um abraço virtual para espantar o estresse. 🤗" },
