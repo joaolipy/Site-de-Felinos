@@ -29,21 +29,21 @@ self.C3_GetObjectRefTable = function () {
 		C3.Behaviors.Platform.Cnds.IsJumping,
 		C3.Plugins.Keyboard.Cnds.OnKeyReleased,
 		C3.Plugins.Sprite.Cnds.IsOverlapping,
-		C3.Plugins.Sprite.Acts.AddRemoveAnimation,
 		C3.Plugins.Sprite.Cnds.OnCollision,
-		C3.Plugins.Sprite.Acts.SetCollisions,
-		C3.Plugins.System.Acts.AddVar,
-		C3.Plugins.Text.Acts.SetText,
-		C3.Plugins.Sprite.Acts.SetPos,
+		C3.JavaScriptInEvents.FolhaDeEventosJogo_Event21_Act1,
 		C3.Plugins.System.Acts.Wait,
+		C3.Plugins.Sprite.Acts.SetPos,
+		C3.Plugins.Sprite.Acts.AddRemoveAnimation,
 		C3.Behaviors.Platform.Acts.SetIgnoreInput,
 		C3.Behaviors.scrollto.Acts.Shake,
 		C3.Plugins.Sprite.Acts.SetOpacity,
 		C3.Behaviors.solid.Acts.SetEnabled,
 		C3.Plugins.Sprite.Acts.Destroy,
+		C3.Plugins.Sprite.Acts.SetCollisions,
 		C3.Plugins.Audio.Acts.StopAll,
 		C3.Plugins.System.Acts.GoToLayout,
 		C3.Plugins.Audio.Acts.SetPlaybackRate,
+		C3.Plugins.Text.Acts.SetText,
 		C3.Plugins.Mouse.Cnds.OnObjectClicked,
 		C3.Plugins.Browser.Acts.Close,
 		C3.Plugins.System.Acts.NextPrevLayout
@@ -123,7 +123,8 @@ self.C3_JsPropNameTable = [
 	{Sprite: 0},
 	{PLAYAGAIN2: 0},
 	{placa2: 0},
-	{pontuação: 0},
+	{Sprite2: 0},
+	{pontuacao: 0},
 	{ação: 0}
 ];
 
@@ -195,5 +196,6 @@ self.InstanceType = {
 	barreiraSom: class extends self.ISpriteInstance {},
 	Sprite: class extends self.ISpriteInstance {},
 	PLAYAGAIN2: class extends self.ITextInstance {},
-	placa2: class extends self.ISpriteInstance {}
+	placa2: class extends self.ISpriteInstance {},
+	Sprite2: class extends self.ISpriteInstance {}
 }

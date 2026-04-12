@@ -1395,20 +1395,16 @@ self.C3_ExpressionFuncs = [
 		() => "parado",
 		() => "velocidade",
 		() => 75,
+		() => -150,
 		() => "pontos",
-		() => "coletado",
-		p => {
-			const v0 = p._GetNode(0).GetVar();
-			return () => v0.GetValue();
-		},
 		() => "som",
 		() => -30,
 		() => "palmas por chegar no final do jogo",
 		() => "objetos",
-		() => 1527,
-		() => 243.3,
 		() => "funcionando",
 		() => 0.1,
+		() => 1527,
+		() => 243.3,
 		() => 2211.348466,
 		() => 336.05009,
 		() => 20,
@@ -1421,7 +1417,11 @@ self.C3_ExpressionFuncs = [
 		() => 2.5,
 		() => "finalizado",
 		() => "funcionando3",
-		() => -50
+		() => -50,
+		p => {
+			const v0 = p._GetNode(0).GetVar();
+			return () => v0.GetValue();
+		}
 ];
 
 
